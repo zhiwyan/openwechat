@@ -658,6 +658,20 @@ func (c *Client) WebWxSendAppMsg(ctx context.Context, msg *SendMessage, request 
 	return c.sendMessage(ctx, request, path.String(), msg)
 }
 
+// WebWxSendAppMsgUrl 发送app消息
+func (c *Client) WebWxSendAppMsgUrl(ctx context.Context, opt *ClientWebWxSendMsgOptions) (*http.Response, error) {
+	opt.Message.Type = MsgTypeApp
+	path, err := url.Parse(c.Domain.BaseHost() + webwxsendappmsg)
+	if err != nil {
+		return nil, err
+	}
+	params := url.Values{}
+	params.Add("lang", "zh_CN")
+	params.Add("pass_ticket", opt.LoginInfo.PassTicket)
+	path.RawQuery = params.Encode()
+	return c.sendMessage(ctx, opt.BaseRequest, path.String(), opt.Message)
+}
+
 type ClientWebWxOplogOption struct {
 	RemarkName  string
 	UserName    string
