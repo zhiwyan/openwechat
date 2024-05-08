@@ -660,7 +660,7 @@ func (c *Client) WebWxSendAppMsg(ctx context.Context, msg *SendMessage, request 
 
 // WebWxSendAppMsgUrl 发送app消息
 func (c *Client) WebWxSendAppMsgUrl(ctx context.Context, opt *ClientWebWxSendMsgOptions) (*http.Response, error) {
-	opt.Message.Type = AppMsgTypeUrl
+	opt.Message.Type = AppMessageTypeUrl
 	path, err := url.Parse(c.Domain.BaseHost() + webwxsendappmsg)
 	if err != nil {
 		return nil, err
