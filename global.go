@@ -31,7 +31,8 @@ const (
 
 // 消息类型
 const (
-	AppMessage = 6
+	AppMessageTypeUrl = 5
+	AppMessage        = 6
 )
 
 // MessageType 以Go惯用形式定义了PC微信所有的官方消息类型。
